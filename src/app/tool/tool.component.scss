@@ -1,0 +1,243 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  outline: none;
+}
+
+.cap-container {
+  padding: 24px 24px 0;
+}
+
+.cap-card {
+  position: relative;
+  padding: 8px 12px 24px;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+  .cap-card__header {
+    font-weight: 400;
+    margin: 12px 0;
+    padding: 0 4px;
+  }
+
+  .cap-card__btn {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    cursor: pointer;
+    transition: all 0.24s linear;
+    &.cap-card__btn--primary {
+      background: #00796b;
+      color: #fff;
+    }
+    &.cap-card__btn--hidden {
+      transform: scale(0);
+    }
+    &.cap-card__btn--next {
+      top: 64px;
+    }
+    &.cap-card__btn--down {
+      top: 104px !important;
+    }
+    &.cap-card__btn--input {
+      top: 64px;
+      border-color: #d8d8d8 #d1d1d1 #bababa;
+      border-style: solid;
+      border-width: 1px;
+      padding: 4px 24px;
+      font-size: 18px;
+      border-radius: 4px;
+    }
+  }
+}
+.cap-filter {
+  margin: 24px 0;
+  padding: 0 12px;
+  .cap-filter__type {
+    width: 150px;
+  }
+
+  .cap-filter__field {
+    margin-left: 24px;
+  }
+
+  .cap-filter__icon {
+    margin-left: 24px;
+    transition: all 0.2s linear;
+    border-radius: 50%;
+    transform: rotate(-25deg);
+    vertical-align: middle;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.3) rotate(-35deg);
+      background: rgba(248, 248, 248, 0.71);
+    }
+  }
+}
+
+.cap-table {
+  width: 99.9%;
+  border-collapse: collapse;
+  background: white;
+  .cap-table__head {
+    border-bottom: 1px solid #748cd0;
+    th {
+      font-size: 12px;
+      background: #f1f1f1;
+    }
+  }
+
+  .cap-table__body {
+    td {
+      border-top: 1px solid #96b4ca40;
+      border-bottom: 1px solid #96b4ca40;
+      &:last-child {
+        text-align: center;
+      }
+    }
+    tr {
+      user-select: none;
+      transition: box-shadow linear 220ms;
+      &:hover td:not([rowspan]) {
+        transform: scale(1, 1);
+        background: linear-gradient(white, rgba(211, 211, 211, 0.6));
+        //box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0px rgba(0, 0, 0, 0.14), 0 1px 10px 0px rgba(0, 0, 0, 0.12);
+      }
+      &:hover td[rowspan]:hover ~ td {
+        box-shadow: none;
+      }
+      &:hover svg{
+        transform: scale(1);
+      }
+    }
+
+  }
+  .cap-table__row {
+    height: 50px;
+    &.cap-table__row--focused {
+      transform: scale(1, 1);
+      box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0px rgba(0, 0, 0, 0.14), 0 1px 10px 0px rgba(0, 0, 0, 0.12);
+      svg{
+        transform: scale(1);
+      }
+    }
+  }
+  td, th {
+    padding: 0 12px;
+    min-width: 142px;
+    max-width: 130px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: #FFF;
+    &:last-child {
+      width: 160px;
+      min-width: 160px;
+    }
+  }
+
+  .cap-table__error {
+    vertical-align: middle;
+    margin-right: 4px;
+  }
+
+  .cap-table__btn {
+    display: block;
+    padding: 6px 22px;
+    width: max-content;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #00796b;
+    color: white;
+  }
+
+  .cap-table__action {
+    margin-left: 12px;
+    cursor: pointer;
+    fill: #707070;
+    opacity: 0.6;
+    transition: all .24s;
+    transform: scale(0);
+    &:hover {
+      opacity: 1;
+    }
+    &.cap-table__action--hide {
+      transform: scale(0) !important;
+    }
+
+  }
+
+}
+
+.cap-table-display {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 12px;
+  .cap-table-display__btn:not(:disabled):hover {
+    color: rgb(68, 68, 68);
+    background: #8080801a;
+    transition: all 0.2s linear;
+  }
+
+  .cap-table-display__output {
+    font-size: 18px;
+    margin-right: 12px;
+    width: 120px;
+    text-align: right;
+    padding: 0 12px;
+  }
+  .cap-table-display__warning {
+    padding: 10px 24px;
+    width: 100%;
+    color: #e53935;
+  }
+}
+
+.cap-table-plot {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 8px;
+  .cap-table-plot__btn {
+    padding: 8px 24px;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #676767;
+    background-color: white;
+  }
+}
+
+.cap-table-statistics {
+  display: flex;
+  padding: 24px 20%;
+  .cap-table-statistics__chart {
+    max-width: 100%;
+    height: 324px !important;
+    margin: 12px 0;
+    padding: 0 24px;
+  }
+}
+
+input {
+  padding: 6px 12px;
+  width: 50%;
+  min-width: 120px;
+  max-width: 150px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid lightgray;
+  outline: none;
+}
+
+button {
+  padding: 4px 24px;
+  font-size: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #676767;
+  background-color: white;
+}
