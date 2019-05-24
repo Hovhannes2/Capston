@@ -84,11 +84,15 @@ export class ToolComponent implements OnInit {
       this.tableData = this.tableData.filter((group: Group) => group.rows.length != 0);
       this.visibleData = this.visibleData.filter((group: Group) => group.rows.length != 0);
     }
+    if ( this.usabilityTotal) {
+      this.calculateUsability();
+    }
   }
 
   filterList() {
     this.visibleData = this.tableData;
     this.filterColumns.forEach(columnName => this.filterListByColumn(columnName, this[columnName]));
+    this.calculateUsability();
   }
 
   filterListByColumn(filteredColumn: string, value: any) {
@@ -170,8 +174,8 @@ export class ToolComponent implements OnInit {
       this.usabilityGroup.push(this.usability / this.visibleData[i].rows.length);
       this.usability = 0;
     }
-    this.findErrors();
     this.usabilityTotal = this.usabilityGroup.reduce((partial_sum, a) => partial_sum + a) / this.visibleData.length;
+    this.findErrors();
     this.usabilityTotal = this.usabilityTotal.toFixed(4);
     this.showUsability = true;
   }
@@ -188,7 +192,7 @@ export class ToolComponent implements OnInit {
     const usaRange = this.usabilityList[this.cumulativeLength(j) + i].toFixed(2) * 50;
     if (usaRange <= 12.5) {return 'rgba(255, 0, 0, 0.59)'; }
     if (usaRange > 12.5 && usaRange <= 25) {return 'rgba(255, 165, 0, 0.68)'; }
-    if (usaRange > 12.5 && usaRange <= 50) {return 'rgba(0, 128, 0, 0.69)'; }
+    if (usaRange > 25 && usaRange <= 50) {return 'rgba(0, 128, 0, 0.69)'; }
   }
 
   findErrors() {
@@ -211,7 +215,7 @@ export class ToolComponent implements OnInit {
     }
     if (numberOfNavs > numberOfImp) {
       this.mainPageErrorPresent = true;
-      this.usabilityTotal = this.usabilityTotal / 3;
+      this.usabilityTotal = this.usabilityTotal / 2;
     }
   }
 

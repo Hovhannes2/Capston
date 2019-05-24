@@ -51,7 +51,9 @@
           </thead>
           <tbody class="cap-table__body">
           <ng-container *ngFor="let data of visibleData, let j = index">
-            <tr *ngFor="let row of data.rows, let i = index" class="cap-table__row" (dblclick)="rowID == row.id ? saveRow() :editRow(row.id)" [ngClass]="{'cap-table__row--focused' : row.id === rowID}">
+            <tr *ngFor="let row of data.rows, let i = index" class="cap-table__row" (dblclick)="rowID == row.id ? saveRow() : editRow(row.id)"
+                (keyup.enter)="rowID == row.id ? saveRow() : ''"
+                [ngClass]="{'cap-table__row--focused' : row.id === rowID}">
               <!--Type of Function-->
               <td *ngIf="row.id === rowID">
                 <mat-select [(value)]="row.type" placeholder="Type">
